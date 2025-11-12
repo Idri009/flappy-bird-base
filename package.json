@@ -1,0 +1,38 @@
+{
+  "name": "flappy-bird-base",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "compile": "hardhat compile",
+    "deploy:base": "hardhat run scripts/deploy.ts --network base",
+    "deploy:base-sepolia": "hardhat run scripts/deploy.ts --network base-sepolia",
+    "verify": "hardhat verify --network base"
+  },
+  "dependencies": {
+    "@farcaster/miniapp-sdk": "^0.2.1",
+    "next": "15.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "viem": "^2.21.19"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.4.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.21",
+    "dotenv": "^16.4.5",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
+    "hardhat": "^2.22.15",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
