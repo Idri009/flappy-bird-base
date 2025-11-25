@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const manifest = {
-    accountAssociation: {
-      header: 'eyJmaWQiOjE5Mjk5NSwidHlwZSI6ImF1dGgiLCJrZXkiOiIweDlBNzc3MUE4NkM4RGM0NUJlM2VCNEQ1MEU2QTk0NzEwNjA0NDBlNjEifQ',
-      payload: 'eyJkb21haW4iOiJmbGFwcHktYmlyZC1iYXNlLnZlcmNlbC5hcHAifQ',
-      signature: 'KnEb4qjBb59+ZF2YGpvmZ4a1bIoTC/R5SIEX1TkMvlkorXvHFQKDHsz4WromHu6NJnOAeImxp+Gq8SOKxTo+Nhw=',
-    },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE5Mjk5NSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEJjODYzNTQ2NjAxZkM2MjY4OUEyODM4RWVGMDJiNjhmM0EzOUQ1RTkifQ",
+    "payload": "eyJkb21haW4iOiJmbGFwcHktYmlyZC1iYXNlLnZlcmNlbC5hcHAifQ",
+    "signature": "Hy/lDj1YPp8AUfXbeLAzO1eBxv4qm7dm9DeDcOwl2wdC5K9FroxlIpladO7Skjw18h57s+zHs46B3ZjsqhlHPhs="
+  },
     miniapp: {
       version: '1',
       name: 'Flappy Bird Base',
