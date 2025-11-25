@@ -48,10 +48,28 @@ export async function POST(req: NextRequest) {
     }
 
     if (!NFT_CONTRACT_ADDRESS) {
-      return NextResponse.json(
-        { error: 'NFT contract not configured' },
-        { status: 500 }
-      );
+      // Return mock response for testing when contract is not deployed
+      const getTier = (score: number) => {
+        if (score >= 100) return 'Legendary';
+        if (score >= 50) return 'Gold';
+        if (score >= 25) return 'Silver';
+        if (score >= 10) return 'Bronze';
+        return 'None';
+      };
+
+      return NextResponse.json({
+        success: false,
+        error: 'NFT contract not deployed yet',
+        message: 'Please deploy the NFT contract and set NEXT_PUBLIC_NFT_CONTRACT_ADDRESS in environment variables',
+        tier: getTier(score),
+        score,
+        instructions: [
+          '1. Add PRIVATE_KEY to .env.local',
+          '2. Run: npm run deploy:base-sepolia',
+          '3. Copy contract address to .env.local and Vercel',
+          '4. Redeploy the app'
+        ]
+      }, { status: 503 });
     }
 
     // Create public client for reading
