@@ -313,7 +313,7 @@ export default function FlappyBirdGame() {
       const userAddress = accounts[0];
 
       // Get contract address and prepare transaction
-      const contractAddress = process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS;
+      const contractAddress = process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as `0x${string}` | undefined;
       
       if (!contractAddress) {
         alert('❌ NFT contract not deployed yet. Please contact the developer.');
@@ -322,7 +322,7 @@ export default function FlappyBirdGame() {
       }
 
       // Generate unique session ID
-      const sessionId = `0x${Date.now().toString(16)}${Math.floor(Math.random() * 1000000).toString(16).padStart(8, '0')}`;
+      const sessionId = `0x${Date.now().toString(16)}${Math.floor(Math.random() * 1000000).toString(16).padStart(8, '0')}` as `0x${string}`;
       const score = gameState.score;
       const gameTime = Math.floor(Date.now() / 1000);
       const jumps = 0;
@@ -330,11 +330,7 @@ export default function FlappyBirdGame() {
       // Encode function call data
       // mintFlappyBirdNFT(bytes32 sessionId, uint256 score, uint256 gameTime, uint256 jumps)
       const functionSignature = '0x8c5e3a7d'; // keccak256('mintFlappyBirdNFT(bytes32,uint256,uint256,uint256)').slice(0, 10)
-      const encodedData = functionSignature + 
-        sessionId.slice(2).padStart(64, '0') +
-        score.toString(16).padStart(64, '0') +
-        gameTime.toString(16).padStart(64, '0') +
-        jumps.toString(16).padStart(64, '0');
+      const encodedData = `${functionSignature}${sessionId.slice(2).padStart(64, '0')}${score.toString(16).padStart(64, '0')}${gameTime.toString(16).padStart(64, '0')}${jumps.toString(16).padStart(64, '0')}` as `0x${string}`;
 
       // Send transaction
       const txHash = await provider.request({
