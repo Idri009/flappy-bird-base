@@ -338,8 +338,8 @@ export default function FlappyBirdGame() {
 
       // Encode function call data
       // mintFlappyBirdNFT(bytes32 sessionId, uint256 score, uint256 gameTime, uint256 jumps)
-      const functionSignature = '0x8c5e3a7d'; // keccak256('mintFlappyBirdNFT(bytes32,uint256,uint256,uint256)').slice(0, 10)
-      const encodedData = `${functionSignature}${sessionId.slice(2).padStart(64, '0')}${score.toString(16).padStart(64, '0')}${gameTime.toString(16).padStart(64, '0')}${jumps.toString(16).padStart(64, '0')}`;
+      const functionSelector = '0x3559e625'; // keccak256('mintFlappyBirdNFT(bytes32,uint256,uint256,uint256)').slice(0, 10)
+      const encodedData = `${functionSelector}${sessionId.slice(2).padStart(64, '0')}${score.toString(16).padStart(64, '0')}${gameTime.toString(16).padStart(64, '0')}${jumps.toString(16).padStart(64, '0')}`;
 
       // Prepare transaction
       const txParams = {
