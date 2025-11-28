@@ -29,6 +29,7 @@ export default function FlappyBirdGame() {
   const [highScore, setHighScore] = useState(0);
   const [showMintModal, setShowMintModal] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
   const gameLoopRef = useRef<number>();
 
   // Game constants
@@ -376,6 +377,30 @@ export default function FlappyBirdGame() {
     }
   };
 
+  const handleShareOnFarcaster = async () => {
+    setIsSharing(true);
+    try {
+      const tier = getTierForScore(gameState.score);
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app';
+      
+      // Compose cast text
+      const castText = `🎮 Just scored ${gameState.score} points in Flappy Bird on Base! ${tier.emoji}\n\n${tier.name} Tier achieved!\n\nPlay now: ${appUrl}`;
+      
+      // Use Farcaster SDK to compose cast
+      const result = await sdk.actions.openUrl(`https://warpcast.com/~/compose?text=${encodeURIComponent(castText)}&embeds[]=${encodeURIComponent(appUrl)}`);
+      
+      if (result) {
+        console.log('Cast composer opened successfully');
+      }
+      
+    } catch (error: any) {
+      console.error('Sharing error:', error);
+      alert(`❌ Error: ${error.message || 'Failed to share on Farcaster'}`);
+    } finally {
+      setIsSharing(false);
+    }
+  };
+
   const getTierForScore = (score: number) => {
     if (score >= 40) return { name: 'Legendary', emoji: '💎', color: 'purple' };
     if (score >= 20) return { name: 'Gold', emoji: '🥇', color: 'yellow' };
@@ -474,6 +499,14 @@ export default function FlappyBirdGame() {
                 className="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {isMinting ? '⏳ Minting...' : '🎨 Mint NFT (0.0001 ETH)'}
+              </button>
+
+              <button
+                onClick={handleShareOnFarcaster}
+                disabled={isSharing}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-4 px-6 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              >
+                {isSharing ? '⏳ Opening...' : '📣 Share on Farcaster'}
               </button>
 
               <button
