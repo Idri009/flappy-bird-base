@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Flappy Bird Base",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/flappy-bird-og.png`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/images/og.png`,
         width: 1200,
         height: 630,
         alt: "Flappy Bird Base Game",
@@ -48,17 +48,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flappy Bird Base - Mini App",
     description: "Play the classic Flappy Bird game and mint NFTs!",
-    images: [`${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/flappy-bird-og.png`],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/images/og.png`],
   },
   icons: {
-    icon: "/bird-icon.png",
-    shortcut: "/bird-icon.png",
-    apple: "/bird-icon.png",
+    icon: "/images/icon.png",
+    shortcut: "/images/icon.png",
+    apple: "/images/icon.png",
   },
   other: {
     // Farcaster Frame metadata
     "fc:frame": "vNext",
-    "fc:frame:image": `${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/flappy-bird-og.png`,
+    "fc:frame:image": `${process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app'}/images/og.png`,
     "fc:frame:button:1": "🐦 Play Flappy Bird",
     "fc:frame:post_url": process.env.NEXT_PUBLIC_APP_URL || 'https://flappy-bird-base.vercel.app',
     "fc:frame:image:aspect_ratio": "1.91:1",
